@@ -1,30 +1,31 @@
-import logo from "./logo.svg";
+import { Box } from "@mui/system";
+import { Grid } from "@mui/material";
 import "./App.css";
-import ContentEditable from "react-contenteditable";
-import { useRef, useState } from "react";
-import Dropzone from "./Dropzone";
+import Banner from "./Banner";
+import Body from "./Body";
+import Footer from "./Footer";
+import Header from "./Header";
+import ToolBar from "./ToolBar";
 
 function App() {
-  const ref = useRef(null);
-  const [state, setState] = useState({ html: "<b>Hello <i>World</i></b>" });
-
-  const handleChange = (evt) => {
-    setState({ html: evt.target.value });
-  };
-
   return (
-    <div className="App">
-      <ContentEditable
-        innerRef={ref}
-        html={state.html} // innerHTML of the editable div
-        disabled={false} // use true to disable editing
-        onChange={handleChange} // handle innerHTML change
-        tagName="article" // Use a custom HTML tag (uses a div by default)
-      />
-      <div>
-        <Dropzone />
-      </div>
-    </div>
+    <Box sx={{ flexGrow: 1, backgroundColor: "#808080" }}>
+      <Grid container spacing={2}>
+        <Grid item xs={4}>
+          <ToolBar />
+        </Grid>
+        <Grid item xs={8}>
+          <Box
+            sx={{ backgroundColor: "white", margin: "10px", padding: "10px" }}
+          >
+            <Header />
+            <Banner />
+            <Body />
+            <Footer />
+          </Box>
+        </Grid>
+      </Grid>
+    </Box>
   );
 }
 
