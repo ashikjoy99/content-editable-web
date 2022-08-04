@@ -43,6 +43,7 @@ const Banner = () => {
   };
 
   const handleChange = (e, i) => {
+    e.stopPropagation();
     setBannerState((draft) => {
       draft.text[i].html = e.target.value;
     });
@@ -74,6 +75,9 @@ const Banner = () => {
             innerRef={contentRef}
             html={html} // innerHTML of the editable div
             disabled={false} // use true to disable editing
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
             onChange={(e) => handleChange(e, index)} // handle innerHTML change
             tagName="article" // Use a custom HTML tag (uses a div by default)
           />
